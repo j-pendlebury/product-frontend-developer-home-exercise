@@ -1,0 +1,160 @@
+$brand: #373151;
+$grey2: #4d4d4d;
+$grey1: #f4f1f1;
+$alert: #a72326;
+$background: #fff;
+
+$breakpoint: 500px;
+
+$font-size-primary-sm: 26px;
+$font-size-primary-lg: 30px;
+
+$font-size-secondary-sm: 20px;
+$font-size-secondary-lg: 22px;
+
+$font-size-tertiary-sm: 18px;
+$font-size-tertiary-lg: 18px;
+
+$line-height-primary: 1.25rem;
+$line-height-secondary: 1.35rem;
+$line-height-tertiary: 1.5rem;
+
+$font-stack: 'Verdana', 'Arial', sans-serif;
+
+@mixin primary-text($breakpoint: small) {
+  font-family: $font-stack;
+  font-size: if($breakpoint == large, $font-size-primary-lg, $font-size-primary-sm);
+  line-height: $line-height-primary;
+}
+
+@mixin secondary-text($breakpoint: small) {
+  font-family: $font-stack;
+  font-size: if($breakpoint == large, $font-size-secondary-lg, $font-size-secondary-sm);
+  line-height: $line-height-secondary;
+}
+
+@mixin tertiary-text($breakpoint: small) {
+  font-family: $font-stack;
+  font-size: $font-size-tertiary-sm;
+  line-height: $line-height-tertiary;
+}
+
+$image-size-large: 100px;
+$image-size-small: 60px;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $grey1;
+  font-family: 'Veranda', 'Arial', sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $breakpoint) {
+    padding: 30px 15px 0 15px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  border-left: 5px solid $brand;
+  padding-left: 20px;
+  background-color: $background;
+  padding-inline: 15px;
+  width: 450px;
+  margin-top: 30px;
+
+  @media (max-width: $breakpoint) {
+    margin-top: 0;
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+.wrapper > .image {
+  position: relative;
+  width: $image-size-large;
+  height: $image-size-large;
+  clip-path: circle(50% at 50% 50%);
+  margin: 20px 0;
+
+  @media (max-width: $breakpoint) {
+    width: $image-size-small;
+    height: $image-size-small;
+    margin: 15px 0;
+  }
+}
+
+.wrapper > .image > img {
+  clip-path: circle(50% at 50% 50%);
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc($image-size-large - 3px * 2);
+  height: calc($image-size-large - 3px * 2);
+
+  @media (max-width: $breakpoint) {
+    width: calc($image-size-small - 3px * 2);
+    height: calc($image-size-small - 3px * 2);
+  }
+}
+
+.information {
+  @media (max-width: $breakpoint) {
+    margin-top: 15px;
+  }
+}
+
+.information > .party {
+  @include secondary-text(large);
+  color: $grey2;
+
+  @media (max-width: $breakpoint) {
+    @include secondary-text();
+  }
+}
+
+.information > .name {
+  @include primary-text(large);
+  font-weight: 700;
+  color: $brand;
+  padding-top: 5px;
+
+  @media (max-width: $breakpoint) {
+    @include primary-text();
+  }
+}
+
+.information > .constituency {
+  @include tertiary-text(large);
+  color: $grey2;
+  padding: 20px 0;
+
+  @media (max-width: $breakpoint) {
+    @include tertiary-text();
+    padding: 15px 0 20px 0;
+  }
+}
+
+.isServing {
+  @include tertiary-text(large);
+  color: $alert;
+  font-weight: 700;
+  background-color: $grey1;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+
+  @media (max-width: $breakpoint) {
+    @include tertiary-text();
+    padding: 10px 15px;
+  }
+}

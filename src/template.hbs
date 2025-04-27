@@ -1,0 +1,15 @@
+<div class='wrapper'>
+  <div class='image' style='background:#{{latestParty.backgroundColour}}'>
+    <img src='{{thumbnailUrl}}' alt='{{nameDisplayAs}} image' />
+  </div>
+  <div class='information'>
+    <p class='party'>{{latestParty.name}}</p>
+    <p class='name'>{{nameDisplayAs}}</p>
+    <p class='constituency'>{{latestHouseMembership.membershipFrom}}</p>
+    {{#if latestHouseMembership.membershipEndDate}}
+      <div class='isServing'>
+        <p>No longer serving</p>
+      </div>
+    {{/if}}
+  </div>
+</div>
