@@ -2,7 +2,7 @@ export interface MemberDataResponse {
   value: Member;
 }
 
-export interface Member {
+interface Member {
   id: number;
   nameListAs: string;
   nameDisplayAs: string;
@@ -14,7 +14,7 @@ export interface Member {
   thumbnailUrl: string;
 }
 
-export interface Party {
+interface Party {
   id: number;
   name: string;
   abbreviation: string;
@@ -26,7 +26,7 @@ export interface Party {
   isIndependentParty: boolean;
 }
 
-export interface HouseMembership {
+interface HouseMembership {
   membershipFrom: string;
   membershipFromId: number;
   house: number;
@@ -38,7 +38,7 @@ export interface HouseMembership {
   membershipStatus: MembershipStatus;
 }
 
-export interface MembershipStatus {
+interface MembershipStatus {
   statusIsActive: boolean;
   statusDescription: string;
   statusNotes: string | null;

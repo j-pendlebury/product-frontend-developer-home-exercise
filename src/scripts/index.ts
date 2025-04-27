@@ -1,5 +1,10 @@
-import { Member, MemberDataResponse } from '../types';
+import { MemberDataResponse } from '../types';
 import HandlebarsTemplate from 'handlebars';
+
+enum ErrorType {
+  ID_FORMAT = 'id_format',
+  MISSING_QUERY = 'missing_query',
+}
 
 class Main {
   constructor() {
@@ -11,7 +16,7 @@ class Main {
     if (memberId) {
       this.fetchMemberData(memberId);
     } else {
-      console.error('No memberId found in URL query.');
+      this.renderError(ErrorType.MISSING_QUERY);
     }
   }
 
@@ -32,7 +37,7 @@ class Main {
 
       this.renderMember(data.value);
     } catch (error) {
-      this.renderError();
+      this.renderError(ErrorType.ID_FORMAT);
       console.error(error);
     }
   }
@@ -63,8 +68,9 @@ class Main {
     }
   }
 
-  private renderError() {
-    const errorMsg = `<div class="error"><p>Error fetching member data.</p><p>Please try again, and make sure the ID number is correct.</p></div>`;
+  private renderError(errorType: ErrorType) {
+    const errorMsgTxt = errorType === ErrorType.ID_FORMAT ? 'Please use correct ID format' : '<code>memberId</code> query missing. Make sure you include <code>?memberId={id}</code> in your URL';
+    const errorMsg = `<div class="error"><p>Error fetching member data.</p><p>${errorMsgTxt}</p></div>`;
     const root = document.getElementById('root');
 
     if (root) {
