@@ -158,3 +158,9 @@ main {
     padding: 10px 15px;
   }
 }
+
+.error {
+  color: $alert;
+  font-weight: 700;
+  @include secondary-text(large);
+}

@@ -32,7 +32,8 @@ class Main {
 
       this.renderMember(data.value);
     } catch (error) {
-      console.error('Error fetching member data:', error);
+      this.renderError();
+      console.error(error);
     }
   }
 
@@ -54,12 +55,20 @@ class Main {
     </div>`;
 
     const template = HandlebarsTemplate.compile(source);
-    const html = template(member);
 
     const root = document.getElementById('root');
 
     if (root) {
-      root.innerHTML = html;
+      root.innerHTML = template(member);
+    }
+  }
+
+  private renderError() {
+    const errorMsg = `<div class="error"><p>Error fetching member data.</p><p>Please try again, and make sure the ID number is correct.</p></div>`;
+    const root = document.getElementById('root');
+
+    if (root) {
+      root.innerHTML = errorMsg;
     }
   }
 }
